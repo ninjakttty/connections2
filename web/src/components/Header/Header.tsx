@@ -3,11 +3,17 @@ import { Box, Center } from '@mantine/core'
 const Header = ({ groups }) => {
   // console.log(`groups:`, groups)
   const rows = [
-    { str: 'Drag Queens Names', id: 'queens' },
-    { str: 'Furry Friends', id: 'pets' },
-    { str: 'Megs!', id: 'Megs' },
-    { str: 'Herbs', id: 'food' },
+    { str: 'DC Characters', id: 'dc' },
+    { str: 'Offerings', id: 'offerings' },
+    { str: 'Fun', id: 'fun' },
+    { str: 'Credit ____', id: 'credit' },
   ].filter((item) => groups.includes(item.id))
+  // const rows = [
+  //   { str: 'Drag Queens Names', id: 'queens' },
+  //   { str: 'Furry Friends', id: 'pets' },
+  //   { str: 'Megs!', id: 'Megs' },
+  //   { str: 'Herbs', id: 'food' },
+  // ].filter((item) => groups.includes(item.id))
 
   const colors = ['red', 'blue', 'green', 'yellow']
 
