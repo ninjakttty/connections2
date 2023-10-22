@@ -1,5 +1,5 @@
-# Mantine Redwood template
+# Connections Game Challenge
 
-Get started with the template by clicking `Use this template` button on the top of the page.
+## Description
 
-[Documentation](https://mantine.dev/guides/redwood/)
+ Build a NYT Connections clone in 1 hour
