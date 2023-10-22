@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Center, Text, Title } from '@mantine/core'
 
 import Header from 'src/components/Header/Header'
+import Healthbar from 'src/components/Healthbar/Healthbar'
 
 import { Welcome } from '../../components/Welcome/Welcome'
 export default function IndexPage() {
@@ -39,7 +40,7 @@ export default function IndexPage() {
   // guessed groups
   const [groups, setGroups] = useState([])
 
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(4)
 
   const handleSubmit = (names) => {
     const namesList = list.reduce((acc, item) => {
@@ -59,7 +60,7 @@ export default function IndexPage() {
       setList(newList)
       setGroups([...groups, groupGuess])
     } else {
-      setCount(count + 1)
+      setCount(count - 1)
     }
   }
 
@@ -69,9 +70,14 @@ export default function IndexPage() {
         <Title order={3}>Make connections between words</Title>
       </Center>
       <Header groups={groups} />
-      {count < 4 && <Welcome list={list} onSubmit={handleSubmit} />}
-      {count === 4 && <Text color="red">Try again next time!</Text>}
-      <h4>Guesses: {count}</h4>
+      {count !== 0 && <Welcome list={list} onSubmit={handleSubmit} />}
+      {count === 0 && (
+        <Center style={{ margin: 32 }}>
+          <Text c="red">Try again next time!</Text>
+        </Center>
+      )}
+
+      <Healthbar lives={count} />
     </>
   )
 }
