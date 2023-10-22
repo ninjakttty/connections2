@@ -1,30 +1,79 @@
-import { Title, Text, Anchor } from '@mantine/core'
+import { useState } from 'react'
 
-import classes from './Welcome.module.css'
+import { SimpleGrid, Button, Flex, Chip } from '@mantine/core'
 
-export function Welcome() {
+export function Welcome({ list, onSubmit: handleSubmit }) {
+  // hold selected items
+  const [value, setValue] = useState([])
+
+  // let colors = ['red', 'blue', 'green', 'yellow']
+  // colors = [...colors, ...colors, ...colors, ...colors].sort(
+  //   () => Math.random() - 0.5
+  // )
+
+  // const handleSubmit = () => {
+  //   console.log(value)
+  // }
+
   return (
     <>
-      <Title className={classes.title} ta="center" mt={100}>
-        Welcome to{' '}
-        <Text
-          inherit
-          variant="gradient"
-          component="span"
-          gradient={{ from: 'pink', to: 'yellow' }}
+      <SimpleGrid cols={4}>
+        <Chip.Group multiple value={value} onChange={setValue}>
+          {list.map((item, index) => (
+            <Chip key={index} value={item.id}>
+              {item.name}
+            </Chip>
+          ))}
+        </Chip.Group>
+      </SimpleGrid>
+
+      <Flex
+        style={{ marginTop: '60px' }}
+        mih={50}
+        gap="md"
+        justify="center"
+        align="flex-start"
+        direction="row"
+        wrap="wrap"
+      >
+        <Button
+          variant="filled"
+          color="blue"
+          onClick={() => {
+            handleSubmit(value)
+            setValue([])
+          }}
+          disabled={value.length !== 4}
         >
-          Mantine
-        </Text>
-      </Title>
-      <Text color="dimmed" ta="center" size="lg" maw={580} mx="auto" mt="xl">
-        This starter RedwoodJS project includes a minimal setup for server side
-        rendering, if you want to learn more on Mantine + RedwoodJS integration
-        follow{' '}
-        <Anchor href="https://mantine.dev/guides/redwood/" size="lg">
-          this guide
-        </Anchor>
-        . To get started edit index.tsx file.
-      </Text>
+          Submit
+        </Button>
+      </Flex>
     </>
   )
 }
+
+/*
+        {list.map((item, index) => (
+          <Chip
+            defaultChecked
+            icon={null}
+            key={index}
+            variant="filled"
+            color={colors.pop()}
+          >
+            {item.name}
+          </Chip>
+        ))}
+*/
+
+/*
+          <Button key={index} variant="filled" color={colors.pop()}>
+            {item.name}
+          </Button>
+        <Button variant="filled">Button</Button>
+        <Button variant="filled">Button</Button>
+        <Button variant="filled">Button</Button>
+        <div>4</div>
+        <div>5</div>
+*/
+//
